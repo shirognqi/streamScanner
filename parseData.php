@@ -46,7 +46,7 @@ function dealData($oriFile){
 			$outStrTmp .= $serializeStep['line'];
 			if($index == count($setpArr)) $outStrTmp .= '::'.sprintf("%.4f",$timeSpendAll);
 			$outStrTmp .= ')';
-			if($index != 1){
+			if($index != 1 ){
 				$timeSpend = $serializeStep['time'] - $lastTime;
 				$timeSpendPrecent = sprintf("%.2f",$timeSpend/$timeSpendAll*100);
 				$outStr .= '---'.sprintf("%.4f",$timeSpend).'('.$timeSpendPrecent.'%)'.'>>>'.$outStrTmp;

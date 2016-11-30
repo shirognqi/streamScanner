@@ -65,9 +65,11 @@ class PL{
 
 
 		$breakTrace = debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT | DEBUG_BACKTRACE_IGNORE_ARGS);
-		$parentCount = count($breakTrace)-2;
-		$parent  	= $breakTrace[$parentCount];
-		$callPlace 	= $breakTrace[$parentCount+1];
+		
+		$callPlaceCount = count($breakTrace)>1 ? 1 : 0;
+		
+		$parent  	= $breakTrace[0];
+		$callPlace 	= $breakTrace[$callPlaceCount];
 
 		$fileName       = $parent['file'] ?? 	'';
 		$lineNumber     = $parent['line'] ?? 	'';

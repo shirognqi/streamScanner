@@ -28,9 +28,8 @@ class BBB{
 	}
 }
 
-$aaa = new AAA();	// 业务1
+$aaa = new AAA();	// 业务2
 $aaa->test();
-
 $bbb = new BBB();	// 业务2
 $bbb->test();
 
