@@ -9,7 +9,11 @@ define('LINES_FILTER_CONTROLLER', false);	// 是否过滤多流程，一段代�
 						//		'line2'	=> true,				// 打开line2线
 						//		'line3' => false, 				// 关闭line3线
 						//	)；
-define('DISDIR', dirname(__FILE__).'/data/');
+
+define('APCU_SWITCH',	false);			// 启用apcu缓存记录日志的开关；
+
+define('DISDIR', 	dirname(__FILE__).'/data/'); // 生成的数据的目录地址；
+
 class PL{
 
 	private function __construct(){}   
@@ -160,38 +164,47 @@ class PL{
 
 
 	public function saveMssage($input, $overFlowFlag = false){
+		
 		if($overFlowFlag) usleep(10000);
-
+		
+		$apcuSwitch = defined('APCU_SWITCH')?APCU_SWITCH:false;
 		foreach($input as $lineName => $lines){
+			if($apcuSwitch){
+				$apcuIncKey 	= 'ProjectLinesINC_'.$lineName;
 
-			$apcuIncKey 	= 'ProjectLinesINC_'.$lineName;
-
-			$apcuInc 	= apcu_inc($apcuIncKey);
-			if($apcuInc>100){
-				if($apcuInc>100*1.2){
-					apcu_store($apcuIncKey,0);
-					$apcuInc = 0;
-				}else{
-					$this->saveMssage([$lineName => $lines], true); 
+				$apcuInc 	= apcu_inc($apcuIncKey);
+				if($apcuInc>100){
+					if($apcuInc>100*1.2){
+						apcu_store($apcuIncKey,0);
+						$apcuInc = 0;
+					}else{
+						$this->saveMssage([$lineName => $lines], true); 
+					}
 				}
-			}
-			if($apcuInc == 100){
-				$keyArr = [];
-				foreach(range(1,99) as $num)
-					$keyArr[] = 'ProjectLinesKey_' . $lineName . $num;
-				
-				$messages  = apcu_fetch($keyArr);
-				apcu_store($apcuIncKey,0);
-				$messages[]= implode('&',$lines);
+				if($apcuInc == 100){
+					$keyArr = [];
+					foreach(range(1,99) as $num)
+						$keyArr[] = 'ProjectLinesKey_' . $lineName . $num;
+					
+					$messages  = apcu_fetch($keyArr);
+					apcu_store($apcuIncKey,0);
+					$messages[]= implode('&',$lines);
+					$flieDir = rtrim(DISDIR,DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.date("Ymd");
+					if(!is_dir($flieDir)) mkdir($flieDir);
+
+					$file = $flieDir.DIRECTORY_SEPARATOR.$lineName.'.data';
+					file_put_contents($file, implode(chr(10), $messages).chr(10), FILE_APPEND );
+
+				}else{
+					$key = 'ProjectLinesKey_' . $lineName . $apcuInc;
+					apcu_store($key, implode('&',$lines));
+				}
+			}else{
 				$flieDir = rtrim(DISDIR,DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.date("Ymd");
 				if(!is_dir($flieDir)) mkdir($flieDir);
 
 				$file = $flieDir.DIRECTORY_SEPARATOR.$lineName.'.data';
-				file_put_contents($file, implode(chr(10), $messages).chr(10), FILE_APPEND );
-
-			}else{
-				$key = 'ProjectLinesKey_' . $lineName . $apcuInc;
-				apcu_store($key, implode('&',$lines));
+				file_put_contents($file, implode('&',$lines).chr(10), FILE_APPEND );
 			}
 		}
 	}
