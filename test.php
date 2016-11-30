@@ -1,6 +1,6 @@
 <?php
 
-require(__DIR__.DIRECTORY_SEPARATOR.streamScanner.php);
+require(__DIR__.DIRECTORY_SEPARATOR.'streamScanner.php');
 
 
 

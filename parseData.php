@@ -44,11 +44,12 @@ function dealData($oriFile){
 			$outStrTmp .= $serializeStep['namespace'].':';
 			$outStrTmp .= $serializeStep['function'].':';
 			$outStrTmp .= $serializeStep['line'];
+			if($index == count($setpArr)) $outStrTmp .= '::'.sprintf("%.4f",$timeSpendAll);
 			$outStrTmp .= ')';
 			if($index != 1){
 				$timeSpend = $serializeStep['time'] - $lastTime;
 				$timeSpendPrecent = sprintf("%.2f",$timeSpend/$timeSpendAll*100);
-				$outStr .= '---'.sprintf("%.2f",$timeSpend).'('.$timeSpendPrecent.'%)'.'>>>'.$outStrTmp;
+				$outStr .= '---'.sprintf("%.4f",$timeSpend).'('.$timeSpendPrecent.'%)'.'>>>'.$outStrTmp;
 			}else{
 				$outStr .= $outStrTmp;
 			}
