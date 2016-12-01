@@ -1,14 +1,20 @@
 {
-    "name": "shirongqi/streamscanner",
-    "description": "一个PHP版本的console.log(),n\b能在一个流程中记录该调用点的详细信息",
-    "type": "project",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "shirongqi",
-            "email": "shirongqi@126.com"
-        }
-    ],
-    "minimum-stability": "RC",
-    "require": {}
+	"name": "shirongqi/streamscanner",
+	"description": "PHP版的console.log(),\b能在流程中调用一个函数，后台就能记录该调用该函数的详细信息包括：\b步骤数，类名，方法名，行号，上一步到这一步的运行时间等；",
+	"type": "project",
+	"license": "MIT",
+	"authors": [
+	{
+	    "name": "shirongqi",
+	    "email": "shirongqi@126.com"
+	}
+	],
+	"minimum-stability": "RC",
+	"require": {},
+	"repositories": {
+		"packagist": {
+			"type": "composer",
+			"url": "https://packagist.phpcomposer.com"
+		}
+	}
 }
