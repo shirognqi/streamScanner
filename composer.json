@@ -1,0 +1,14 @@
+{
+    "name": "shirongqi/streamscanner",
+    "description": "一个PHP版本的console.log(),n\b能在一个流程中记录该调用点的详细信息",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "shirongqi",
+            "email": "shirongqi@126.com"
+        }
+    ],
+    "minimum-stability": "RC",
+    "require": {}
+}
