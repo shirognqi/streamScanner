@@ -74,6 +74,7 @@ sort($datas, SORT_NUMERIC);
 foreach($datas as $day){
 	
 	if($day == '.' || $day == '..') continue;
+	if(!is_dir(AIMDIR.$day)) 	continue;
 
 	$files = scandir(AIMDIR.$day);
 
