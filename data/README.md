@@ -15,11 +15,11 @@
 
 	
 	|-xxxx(年)xx(月)xx(日)
-		|----xxx(流程名).data
-		|----xxxx(流程名).data
+		|----xxx(流程名).data.prease
+		|----xxxx(流程名).data.prease
 		.
 		.
 		.
-		\---xxxx(流程名).data
+		\---xxxx(流程名).data.prease
 	|-xxxx(年)xx(月)xx(日)
 		...
