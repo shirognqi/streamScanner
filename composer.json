@@ -16,5 +16,8 @@
 			"type": "composer",
 			"url": "https://packagist.phpcomposer.com"
 		}
+	},
+	"autoload": {
+		"classmap": ["src/"]
 	}
 }
