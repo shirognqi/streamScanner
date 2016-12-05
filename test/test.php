@@ -1,29 +1,29 @@
 <?php
 
-require(__DIR__.DIRECTORY_SEPARATOR.'streamScanner.php');
+require(__DIR__.'/../vendor/autoload.php');
 
 
 
 class AAA{
 	public function test(){
-		PL::instance()->set(false);
+		StreamScanner::instance()->set(false);
 		usleep(100);
-		PL::instance()->set(false);
+		StreamScanner::instance()->set(false);
 		usleep(50);
-		PL::instance()->set('line2');
+		StreamScanner::instance()->set('line2');
 
 	}
 }
 
 class BBB{
 	public function test(){
-		PL::instance()->set(false);
+		StreamScanner::instance()->set(false);
 		usleep(100);
-		PL::instance()->set(false);
+		StreamScanner::instance()->set(false);
 		usleep(50);
-		PL::instance()->set('line2');
+		StreamScanner::instance()->set('line2');
 		usleep(50);
-		PL::instance()->set('line2');
+		StreamScanner::instance()->set('line2');
 
 	}
 }

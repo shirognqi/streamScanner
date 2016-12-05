@@ -1,5 +1,4 @@
 <?php
-
 define('AIMDIR', dirname(__FILE__).'/data/');	// 定义路径
 define('SUFFIXOF_DADA_FILE', '.parse');		// 定义数据文件后缀，解析过的直接加个后缀
 
@@ -9,7 +8,7 @@ function endWith($haystack, $needle) {
 	return (substr($haystack, -$length) === $needle);
 }
 
-function dealData($oriFile){
+function ParseData($oriFile){
 
 	$tempFile = $oriFile.'.tmp';
 	if(!is_file($tempFile)) return ;

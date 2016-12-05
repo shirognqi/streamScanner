@@ -14,7 +14,7 @@ define('APCU_SWITCH',	false);			// 启用apcu缓存记录日志的开关；
 
 define('DISDIR', 	dirname(__FILE__).'/data/'); // 生成的数据的目录地址；
 
-class PL{
+class StreamScanner{
 
 	private function __construct(){}   
 	private function __clone(){}
